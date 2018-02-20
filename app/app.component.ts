@@ -9,10 +9,18 @@ import { Recipe } from './recipe.model';
       <h1>RECIPE BOX</h1>
       <h3>A website for recipes</h3>
     </div>
+    <recipe-list [childRecipeList]="recipes" (showRecipeSender)="showRecipe($event)"></recipe-list>
+    <recipe-details [childSelectedRecipe]="selectedRecipe"></recipe-details>
   </div>
   `
 })
 
 export class AppComponent {
-  recipes: Recipe[] = [new Recipe("Chorizo Chili", ["1 can black beans", "1 can pinto beans", "1/2 lb chorizo", "1 onion", "2 serrano peppers", "1 green bell pepper", "1 red bell pepper", "3 cloves garlic", "4 oz mushrooms"], ["Mix ingredients in a pot", "Wait", "Serve"]), new Recipe("Poop", ["Food", "Butt"], ["Eat food", "Wait", "Poop"])]
+  recipes: Recipe[] = [new Recipe("Chorizo Chili", ["1 can black beans", "1 can pinto beans", "1/2 lb chorizo", "1 onion", "2 serrano peppers", "1 green bell pepper", "1 red bell pepper", "3 cloves garlic", "4 oz mushrooms"], ["Mix ingredients in a pot", "Wait", "Serve"]), new Recipe("Poop", ["Food", "Butt"], ["Eat food", "Wait", "Poop"])];
+  selectedRecipe = null;
+
+  showRecipe(currentRecipe) {
+    this.selectedRecipe = currentRecipe;
+    console.log(this.selectedRecipe);
+  }
 }
