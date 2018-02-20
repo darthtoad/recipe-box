@@ -13,6 +13,8 @@ import { Recipe } from './recipe.model';
         <li *ngFor="let currentStep of childSelectedRecipe.instructions">{{currentStep}}</li>
       </ol>
       <button (click)="hideRecipeHasBeenClicked()">Hide recipe</button>
+      <br>
+      <button (click)="editRecipeHasBeenClicked()">Edit Recipe</button>
     </div>
   `
 })
@@ -20,8 +22,13 @@ import { Recipe } from './recipe.model';
 export class RecipeDetailsComponent {
   @Input() childSelectedRecipe: Recipe;
   @Output() hideRecipeSender = new EventEmitter();
+  @Output() editRecipeSender = new EventEmitter();
 
   hideRecipeHasBeenClicked() {
     this.hideRecipeSender.emit();
+  }
+
+  editRecipeHasBeenClicked() {
+    this.editRecipeSender.emit();
   }
 }

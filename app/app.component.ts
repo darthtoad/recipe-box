@@ -10,7 +10,8 @@ import { Recipe } from './recipe.model';
       <h3>A website for recipes</h3>
     </div>
     <recipe-list [childRecipeList]="recipes" (showRecipeSender)="showRecipe($event)"></recipe-list>
-    <recipe-details [childSelectedRecipe]="selectedRecipe" (hideRecipeSender)="hideRecipe()"></recipe-details>
+    <recipe-details [childSelectedRecipe]="selectedRecipe" (hideRecipeSender)="hideRecipe()" (editRecipeSender)="editARecipe()"></recipe-details>
+    <recipe-edit [childEditRecipe]="editRecipe" (finishedEditSender)="finishEditing()"></recipe-edit>
   </div>
   `
 })
@@ -18,6 +19,7 @@ import { Recipe } from './recipe.model';
 export class AppComponent {
   recipes: Recipe[] = [new Recipe("Chorizo Chili", ["1 can black beans", "1 can pinto beans", "1/2 lb chorizo", "1 onion", "2 serrano peppers", "1 green bell pepper", "1 red bell pepper", "3 cloves garlic", "4 oz mushrooms"], ["Mix ingredients in a pot", "Wait", "Serve"]), new Recipe("Poop", ["Food", "Butt"], ["Eat food", "Wait", "Poop"])];
   selectedRecipe = null;
+  editRecipe = null;
 
   showRecipe(currentRecipe) {
     this.selectedRecipe = currentRecipe;
@@ -26,5 +28,13 @@ export class AppComponent {
 
   hideRecipe() {
     this.selectedRecipe = null;
+  }
+
+  editARecipe() {
+    this.editRecipe = this.selectedRecipe;
+  }
+
+  finishEditing() {
+    this.editRecipe = null;
   }
 }
