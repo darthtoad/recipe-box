@@ -10,7 +10,7 @@ import { Recipe } from './recipe.model';
       <h3>A website for recipes</h3>
     </div>
     <recipe-list [childRecipeList]="recipes" (showRecipeSender)="showRecipe($event)"></recipe-list>
-    <recipe-details [childSelectedRecipe]="selectedRecipe"></recipe-details>
+    <recipe-details [childSelectedRecipe]="selectedRecipe" (hideRecipeSender)="hideRecipe()"></recipe-details>
   </div>
   `
 })
@@ -22,5 +22,9 @@ export class AppComponent {
   showRecipe(currentRecipe) {
     this.selectedRecipe = currentRecipe;
     console.log(this.selectedRecipe);
+  }
+
+  hideRecipe() {
+    this.selectedRecipe = null;
   }
 }

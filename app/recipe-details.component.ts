@@ -12,10 +12,16 @@ import { Recipe } from './recipe.model';
       <ol>
         <li *ngFor="let currentStep of childSelectedRecipe.instructions">{{currentStep}}</li>
       </ol>
+      <button (click)="hideRecipeHasBeenClicked()">Hide recipe</button>
     </div>
   `
 })
 
 export class RecipeDetailsComponent {
   @Input() childSelectedRecipe: Recipe;
+  @Output() hideRecipeSender = new EventEmitter();
+
+  hideRecipeHasBeenClicked() {
+    this.hideRecipeSender.emit();
+  }
 }
